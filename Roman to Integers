@@ -1,0 +1,51 @@
+package dsa;
+
+import java.util.Scanner;
+
+// roman number to decimal number
+public class dsa6 {
+     int values(char r) {
+        if (r == 'i') {
+            return 1;
+        } else if (r == 'v') {
+            return 5;
+        } else if (r == 'x') {
+            return 10;
+        } else if (r == 'l') {
+            return 50;
+        } else if (r == 'c') {
+            return 100;
+        } else if (r == 'd') {
+            return 500;
+        } else if (r == 'm') {
+            return 1000;
+        }
+        return -1;
+    }
+    int romanToDecimal(String str){
+        int sum =0 ;
+        for (int i = 0; i < str.length(); i++) {
+            int s1 = values(str.charAt(i));
+            if (i+1 < str.length()) {
+                int s2 = values(str.charAt(i+1));
+                if (s1>=s2) {
+                    sum= sum+ s1 ;
+                } else{
+                    sum = sum + s2-s1 ;
+                    i++;
+                }
+            } else{
+                sum = sum + s1 ;
+            }
+        }
+
+        return sum ;
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter the roman number:");
+        dsa6 ob = new dsa6();
+        String str = sc.next();
+        System.out.println("roman to integer is : "+ob.romanToDecimal(str));
+    }
+}
